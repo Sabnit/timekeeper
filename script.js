@@ -1,154 +1,3 @@
-// // Time variables in seconds
-// let setupTime = 3 * 60;         // 3 minutes for setup
-// let presentationTime = 10 * 60;  // 10 minutes for demo
-// let qaTime = 10 * 60;            // 10 minutes for Q/A
-// let disassembleTime = 2 * 60;    // 2 minutes to disassemble
-// let judgeTime = 5 * 60;          // 5 minutes for judge
-// let totalSeconds = 30 * 60;      // 30 minutes total
-
-// let countdown;
-// let currentPhase = "setup";
-// let demoCompletedEarly = false;
-// let qaSoundPlayed = false;        // Track whether QA sound has been played
-// let twoMinWarningGiven = false;   // Flag to track if the 2-minute warning has been given
-
-// const setupDuration = totalSeconds - setupTime;
-// const presentationDuration = setupDuration - presentationTime;
-// const qaDuration = presentationDuration - qaTime;
-// const disassembleDuration = qaDuration - disassembleTime;
-// const judgeDuration = disassembleDuration - judgeTime;
-
-// const initialSeconds = totalSeconds;
-// const timerDisplay = document.getElementById("timer-display");
-// const startButton = document.getElementById("start-button");
-// const demoCompletedButton = document.getElementById("demo-completed-button");
-// const resetButton = document.getElementById("reset-button");
-// const statusDisplay = document.getElementById("status");
-
-// const countdownSound = document.getElementById("countdown-sound");
-// const endSound = document.getElementById("end-sound");
-// const qaSound = document.getElementById("qa-sound");
-
-// startButton.addEventListener("click", startTimer);
-// demoCompletedButton.addEventListener("click", demoCompletedEarlyHandler);
-// resetButton.addEventListener("click", resetTimer);
-
-// function startTimer() {
-//   startButton.disabled = true;
-//   demoCompletedButton.disabled = true;
-//   resetButton.disabled = false;
-//   statusDisplay.textContent = "Setup phase ongoing...";
-//   qaSoundPlayed = false; // Reset the sound flag at the start
-//   twoMinWarningGiven = false; // Reset the 2-minute warning flag
-
-//   setTimeout(() => {
-//     countdownSound.play();
-//   }, (setupTime - 5.5) * 1000);
-
-//   countdown = setInterval(updateTimer, 1000);
-// }
-
-// function updateTimer() {
-//   if (totalSeconds <= 0) {
-//     clearInterval(countdown);
-//     timerDisplay.textContent = "00:00";
-//     statusDisplay.textContent = "Session complete!";
-//     startButton.disabled = true;
-//     demoCompletedButton.disabled = true;
-//     resetButton.disabled = false;
-//     return;
-//   }
-
-//   totalSeconds--;
-
-//   // Transition logic based on remaining seconds
-//   if (totalSeconds > setupDuration) {
-//     currentPhase = "setup";
-//     statusDisplay.textContent = "Setup phase ongoing...";
-//   } else if (totalSeconds > presentationDuration && !demoCompletedEarly) {
-//     currentPhase = "presentation";
-//     statusDisplay.textContent = "Demo phase ongoing...";
-//     demoCompletedButton.disabled = false;
-
-//     // 2-minute warning during demo
-//     if (totalSeconds === presentationDuration + 2 * 60 && !twoMinWarningGiven) {
-//       alert("2 minutes remaining for the Demo!");
-//       twoMinWarningGiven = true; // Ensure the warning is only given once
-//     }
-
-//     if (totalSeconds <= 33.5) {
-//       endSound.play();
-//     }
-//   } else if (totalSeconds > qaDuration) {
-//     currentPhase = "q&a";
-//     statusDisplay.textContent = "Q/A phase ongoing...";
-//     demoCompletedButton.disabled = true;
-
-//     // 2-minute warning during Q/A
-//     if (totalSeconds === qaDuration + 2 * 60 && !twoMinWarningGiven) {
-//       alert("2 minutes remaining for the Q/A!");
-//       twoMinWarningGiven = true; // Ensure the warning is only given once
-//     }
-
-//     if ((totalSeconds === 30 || demoCompletedEarly) && !qaSoundPlayed) {
-//       qaSound.play();
-//       qaSoundPlayed = true; // Ensure sound plays only once
-//     }
-
-//     if (totalSeconds <= 13.5) {
-//       endSound.play();
-//     }
-//   } else if (totalSeconds > disassembleDuration) {
-//     currentPhase = "disassemble";
-//     statusDisplay.textContent = "Disassemble phase ongoing...";
-//   } else {
-//     currentPhase = "judge";
-//     statusDisplay.textContent = "Judge phase ongoing...";
-
-//     if (totalSeconds === 6) {
-//       endSound.play();
-//     }
-//   }
-
-//   updateDisplay();
-// }
-
-// function demoCompletedEarlyHandler() {
-//   demoCompletedEarly = true;
-
-//   if (currentPhase === "presentation" && totalSeconds > 30) {
-//     const remainingDemoTime = totalSeconds - 30;
-//     totalSeconds = 30 + remainingDemoTime;
-//   }
-
-//   demoCompletedButton.disabled = true;
-//   statusDisplay.textContent = "Q/A phase ongoing...";
-// }
-
-// function resetTimer() {
-//   clearInterval(countdown);
-//   totalSeconds = initialSeconds;
-//   currentPhase = "setup";
-//   demoCompletedEarly = false;
-//   qaSoundPlayed = false; // Reset the sound flag during reset
-//   twoMinWarningGiven = false; // Reset the 2-minute warning flag during reset
-
-//   timerDisplay.textContent = "30:00";
-//   statusDisplay.textContent = "";
-
-//   startButton.disabled = false;
-//   demoCompletedButton.disabled = true;
-//   resetButton.disabled = true;
-// }
-
-// function updateDisplay() {
-//   const minutes = Math.floor(totalSeconds / 60);
-//   const seconds = totalSeconds % 60;
-//   timerDisplay.textContent = `${minutes.toString().padStart(2, "0")}:${seconds
-//     .toString()
-//     .padStart(2, "0")}`;
-// }
-
 /// Time variables in seconds
 let setupTime = 3 * 60;          // 3 minutes for setup
 let presentationTime = 10 * 60;  // 10 minutes for demo
@@ -219,12 +68,12 @@ function updateTimer() {
   totalSeconds--;
 
   // Trigger countdown sound at 27:05 (1625 seconds remaining) only if the demo is not completed early
-  if (totalSeconds === 1625 && !demoCompletedEarly) {
+  if (totalSeconds === 1624 && !demoCompletedEarly) {
     countdownSound.play();
   }
 
   // Show "2 min remaining" message at 19:00 (1140 seconds remaining) only if the demo is not completed early
-  if (totalSeconds === 1143 && !twoMinWarningGivenAt19 && !demoCompletedEarly) {
+  if (totalSeconds === 1142 && !twoMinWarningGivenAt19 && !demoCompletedEarly) {
     twoMinRemainingSound.play();
     // statusDisplay.textContent = "2 minutes remaining!";
     twoMinWarningGivenAt19 = true; // Ensure the 19:00 warning is only given once
@@ -245,7 +94,7 @@ function updateTimer() {
 
   // Play stop sound at 7:03 (423 seconds remaining), only once
   if (totalSeconds === 423) {
-    endSound.play();
+    stopQnA.play();
   }
 
   // Other transition logic based on remaining seconds
@@ -279,7 +128,7 @@ function updateTimer() {
     statusDisplay.textContent = "Disassemble phase ongoing...";
   } else {
     currentPhase = "judge";
-    statusDisplay.textContent = "Judge phase ongoing...";
+    statusDisplay.textContent = "Judge discussion ongoing...";
 
   }
 
