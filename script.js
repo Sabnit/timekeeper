@@ -103,7 +103,7 @@ function updateTimer() {
     statusDisplay.textContent = "Setup phase ongoing...";
   } else if (totalSeconds > presentationDuration && !demoCompletedEarly) {
     currentPhase = "presentation";
-    statusDisplay.textContent = "Demo phase ongoing...";
+    statusDisplay.textContent = "Presentation phase ongoing...";
     demoCompletedButton.disabled = false;
 
     if (totalSeconds <= 1023 && !demoCompletedEarly) {
@@ -151,23 +151,26 @@ function demoCompletedEarlyHandler() {
 }
 
 function resetTimer() {
-  clearInterval(countdown);
-  totalSeconds = initialSeconds;
-  currentPhase = "setup";
-  demoCompletedEarly = false;
-  qaSoundPlayed = false; // Reset the sound flag during reset
-  twoMinWarningGivenAt19 = false; // Reset the 2-minute warning flag for 19:00
-  twoMinWarningGivenAt9 = false; // Reset the 2-minute warning flag for 9:00
-  endSoundPlayedAt1703 = false; // Reset the end sound flag at 17:03 during reset
-  speedMultiplier = 1; // Reset speed to normal
+  // Show confirmation dialog
+  if (confirm("Are you sure you want to reset the timer?")) {
+    clearInterval(countdown);
+    totalSeconds = initialSeconds;
+    currentPhase = "setup";
+    demoCompletedEarly = false;
+    qaSoundPlayed = false; // Reset the sound flag during reset
+    twoMinWarningGivenAt19 = false; // Reset the 2-minute warning flag for 19:00
+    twoMinWarningGivenAt9 = false; // Reset the 2-minute warning flag for 9:00
+    endSoundPlayedAt1703 = false; // Reset the end sound flag at 17:03 during reset
+    speedMultiplier = 1; // Reset speed to normal
 
-  timerDisplay.textContent = "30:00";
-  statusDisplay.textContent = "";
+    timerDisplay.textContent = "30:00";
+    statusDisplay.textContent = "";
 
-  startButton.disabled = false;
-  demoCompletedButton.disabled = true;
-  fastForwardButton.disabled = true;
-  resetButton.disabled = true;
+    startButton.disabled = false;
+    demoCompletedButton.disabled = true;
+    fastForwardButton.disabled = true;
+    resetButton.disabled = true;
+  }
 }
 
 function toggleFastForward() {
