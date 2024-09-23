@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Keeping App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="timer-app">
+      <h1>Time Keeping App</h1>
+      <div id="timer-display">30:00</div>
+      <button id="start-button">Start</button>
+      <button id="demo-completed-button" disabled>Demo Completed</button>
+      <button id="reset-button" disabled>Reset</button>
+      <div id="status"></div>
+      <button id="fast-forward-button" disabled>Fast Forward 2x</button>
+    </div>
+    <audio id="countdown-sound" src="./audio/countdown.mp3"></audio>
+    <audio id="end-sound" src="./audio/end.mp3"></audio>
+    <audio id="qa-sound" src="./audio/Q-A round 3.wav"></audio>
+    <audio id="2-min-remaining-sound" src="./audio/2-minutes-remaining.wav"></audio>
+    <audio id="stop-presentation" src="./audio/stop_presentation.wav"></audio>
+    <audio id="stop-QnA" src="./audio/Stop_QnA_.wav"></audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
