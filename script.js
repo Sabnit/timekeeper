@@ -27,6 +27,7 @@ const startButton = document.getElementById("start-button");
 const demoCompletedButton = document.getElementById("demo-completed-button");
 const resetButton = document.getElementById("reset-button");
 const fastForwardButton = document.getElementById("fast-forward-button");
+const skipDemoButton = document.getElementById("skip-demo");
 const statusDisplay = document.getElementById("status");
 
 const countdownSound = document.getElementById("countdown-sound");
@@ -62,6 +63,7 @@ function updateTimer() {
     startButton.disabled = true;
     demoCompletedButton.disabled = true;
     resetButton.disabled = false;
+    skipDemoButton.disabled = true;
     return;
   }
 
@@ -162,16 +164,23 @@ function resetTimer() {
     twoMinWarningGivenAt9 = false; // Reset the 2-minute warning flag for 9:00
     endSoundPlayedAt1703 = false; // Reset the end sound flag at 17:03 during reset
     speedMultiplier = 1; // Reset speed to normal
-
+    
     timerDisplay.textContent = "30:00";
     statusDisplay.textContent = "";
-
+    
     startButton.disabled = false;
     demoCompletedButton.disabled = true;
     fastForwardButton.disabled = true;
     resetButton.disabled = true;
+    skipDemoButton.disabled =  false;
   }
 }
+
+skipDemoButton.addEventListener("click", () => {
+  totalSeconds = 1626; // Jump to 27:05
+  skipDemoButton.disabled = true;
+  updateDisplay();
+});
 
 function toggleFastForward() {
   // Toggle between normal (1x), fast (8x), and faster (16x)

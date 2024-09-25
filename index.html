@@ -13,13 +13,18 @@
       <h1>Time Keeping App</h1>
       <div id="timer-display">30:00</div>
 
-      <!-- Row 1: Start and Reset Buttons in the Same Row -->
+      <!-- Row 1: Start and Reset Buttons -->
       <div class="button-row">
         <button id="start-button">Start</button>
         <button id="reset-button" disabled>Reset</button>
       </div>
 
-      <!-- Row 2: Demo Completed Button -->
+      <!-- Row 2: Skip Setup Button -->
+      <div class="button-row">
+        <button id="skip-demo">Skip Setup</button>
+      </div>
+
+      <!-- Row 3: Presentation Completed Button -->
       <button id="demo-completed-button" disabled>Presentation Completed</button>
 
       <div id="status"></div>
@@ -28,7 +33,6 @@
 
     <!-- Audio Elements -->
     <audio id="countdown-sound" src="./audio/countdown.wav"></audio>
-    <!-- <audio id="end-sound" src="./audio/end.mp3"></audio> -->
     <audio id="qa-sound" src="./audio/Q-A round 3.wav"></audio>
     <audio id="2-min-remaining-sound" src="./audio/2-minutes-remaining.wav"></audio>
     <audio id="stop-presentation" src="./audio/stop_presentation.wav"></audio>
